@@ -1,0 +1,325 @@
+
+MATCH (a:Movie { title: "Cloud Atlas"})
+MATCH (b:Movie { title: "The Matrix"})
+MATCH (c:Movie { title: "Jerry Maguire"})
+RETURN a.title, b.title, c.title
+
+
+MATCH (a:Movie { title: "Cloud Atlas"})
+OPTIONAL MATCH (b:Movie { title: "The matrix"})
+MATCH (c:Movie { title: "Jerry Maguire"})
+RETURN a.title, b.title, c.title
+
+
+OPTIONAL MATCH (a:Movie { title: "Cloud Atlas"})
+OPTIONAL MATCH (b:Movie { title: "The matrix"})
+OPTIONAL MATCH (c:Movie { title: "Jerry Maguire"})
+RETURN a.title, b.title, c.title
+
+
+WITH 
+
+Create Graph
+
+Write a query that returns the 
+
+name of persons connected to GEORGE , 
+Whose name start with C
+regardless of capitalization
+
+
+
+match(n) return "Good Actors" as `Special Title`, n.name, "some string" as `Another spl title`
+
+Optional match :
+
+outer join 
+
+firstname	lastname
+
+value		null
+
+MATCH (a:Movie { title: "Cloud Atlas"})
+MATCH (b:Movie { title: "The Matrix"})
+MATCH (c:Movie { title: "Jerry Maguire"})
+RETURN a.title, b.title, c.title
+
+
+UNION and UNION All
+
+
+MATCH (n:Actor)
+RETURN n.name AS name
+UNION ALL
+MATCH (n:Movie)
+RETURN n.title AS name
+UNION ALL
+MATCH (n:Teacher)
+RETURN n.title AS name
+
+
+
+Order by ASC/DESC
+
+MATCH (n) 
+return n.name
+order by n.name asc
+
+MATCH (n) 
+return n.name
+order by n.name asc
+LIMIT 2*3 / 5+2 / 10-8
+
+MATCH (n) 
+return n.name
+order by n.name asc
+LIMIT tointeger(rand()+2)
+
+MATCH (n) 
+return n.name
+order by n.name asc
+LIMIT tointeger(ceil(2.1254))
+
+
+MATCH (n) 
+return n.name
+order by n.name asc
+LIMIT 5;
+
+
+MATCH (n) 
+return n.name
+order by n.name asc
+SKIP 1
+LIMIT 5;
+
+
+Use Person(label) nodes
+return name and born
+order by born asc/desc
+
+MATCH (n:Person) 
+RETURN n.name, n.born
+ORDER by n.born ASC
+
+MATCH (n:Person) 
+RETURN n.name, n.born
+ORDER by n.born, n.name
+
+
+UNION
+UNION ALL
+ORDER BY
+LIMIT
+
+WITH clause
+
+Query parts to be combined together
+Piping the results
+
+
+MATCH (n)
+WITH n
+ORDER BY n.born
+RETURN collect(n.name) AS names
+
+
+--> 
+<--
+
+MATCH (:Person {name:"Jessica Thompson"})-->(movie)
+RETURN movie.title
+
+MATCH (:Person {name:"Jessica Thompson"})-->(movie)
+RETURN movie.title
+
+MATCH (:Person {name:"Jessica Thompson"})-[r]->(movie)
+RETURN type(r)
+
+MATCH (wallstreet:Movie {title: 'Wall Street'})<-[:ACTED_IN]-(actor) RETURN actor.name
+
+
+
+MATCH p=()-->()-->()-->()
+return nodes(p)
+
+MATCH (n{name: "Paul Blythe"}),
+(j{name: "Jessica Thompson"})
+CREATE (n)-[:FOLLOWS]->(j)
+
+MATCH (paul {name: "Paul Blythe"})-->(one)-->(two)
+WITH one, count(*) as A
+WHERE A > 1
+RETURN one.name
+
+
+CREATE (n:Person{name:"A", age:55,happy="Yes!"})-[:BLOCKS]->(h:Person{name:"B"}),
+(n)-[:KNOWS]->(h) RETURN *
+
+Graph Models
+	Nodes
+	Relationships
+	Props
+	Labels
+VARIABLE
+
+Queries
+	
+ ()
+ []
+ :
+ ``  ,  "", ''
+ -[]->
+
+ -->
+ <--
+ --
+ <-->
+
+
+CREATE 
+(n { name: "Paul", age: 34 })-[r:FOLLOW]->
+(f{name: "Anne", age:40}),
+(n2 { name: "Tim"})-[r2:FOLLOW]->
+(f2{name: "Rita"})
+return n,f,n2,f2
+
+
+
+match(n{name:"John"}) retun n
+
+Returning relationship
+
+	match(n{name:"Paul"})-[r]->({name:"Anne"})
+	return type(r)
+
+	match(n{name:"Paul"})-[r]->({name:"Anne"})
+	return r
+
+
+
+  DB Team 
+
+ selva -> sony -> everyone connected to sony
+
+match p = (n{name:"Selva"})-[r]->({name:"Sony"})<--() 
+RETURN *
+
+5
+
+match p = (n{name:"Selva"})-[r:REPORTS_TO]->({name:"Venkat"})--()
+RETURN *
+ 5 nodes
+
+match p = (n{name:"Selva"})-[r:REPORTS_TO]->({name:"Venkat"})-->()
+RETURN *
+
+	3 nodes
+
+match p = (n{name:"Selva"})-[r:REPORTS_TO]->({name:"Venkat"})<--()
+RETURN *
+	2 nodes
+
+----
+Return Variable with common character
+
+Alias 
+
+Match(a{name: "Anne"}) return a.age AS AgeOfAnne
+
+MATCH(n) RETURN n.address
+
+Return with null
+
+
+match(a{name: "Anne"}) return a.age > 30, "I'am a a literal", (a)-->()
+
+Return Distinct
+
+match(n:Person)-[:ACTED_IN]->(m) 
+return n.name
+
+match(`this actors in the database`:Person)-[:ACTED_IN]->(m) 
+return distinct(`this actors in the database`.name)
+match(n:Person)-[:ACTED_IN]->(m) 
+return distinct(n.name)
+match(n:Person)-[:ACTED_IN]->(m) 
+return distinct(n.name), m.title
+
+
+() --> ()
+() <-- ()
+
+Both are same
+()  --  ()
+() <-->  ()
+
+create ()-[:FOLLOWS:WORKED]->()
+
+MATCH p= ()-[r:FOLLOWS|DIRECTED]->() return type(r)
+
+
+MATCH p= ()-[:DIRECTED{date:"2021-12-23"}]->() return type(r)
+
+*
+match(a) return *
+
+MATCH(a)-[*]->(b) return *
+MATCH(a)-[:ACTED_IN*]->(b) return *
+
+
+()-->()-->()
+
+where 2 relations and 3 nodes
+
+()-->()-->()-->()
+
+match(a)-[*2]->(b) RETURN *
+
+variable lenth 
+
+*minHops..maxHops
+
+match p=(a)-[*..]->(b) return p
+
+Return all people rleated to 
+Charlie Sheen by 2 hops 
+with any combination of relationship types
+ACTED_IN, DIRECTED
+
+
+match (charlie{name: 'Charlie Sheen'})-[:ACTED_IN|DIRECTED*2]->(person:Person) 
+RETURN person.name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+Create a graph as per the diagram "with.png"
+Write following queries. 
+
+1. Write a query returns the name of persons connected to 'George' whose name starts with a C, regardless of capitalization.
+
+2. Write a query returns the names of all related persons and the type of relationship between them.
+
+3. Write a query returns the name of the person connected to 'David' with the at least more than one outgoing relationship
+
+4. write a query returns A list of the names of people in reverse order, limited to 3, is returned in a list.
+
+5. Starting at 'Anders', find all matching nodes, order by name descending and get the top result, then find all the nodes connected to that top result, and return their names.

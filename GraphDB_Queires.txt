@@ -70,6 +70,9 @@ CREATE (n:Banker{name:"venkat"})-[:FOLLOWS]->(v:Singer{name:"Vineela"}) RETURN *
 CREATE (n:Banker{name:"venkat"})-[:FOLLOWS{date:'2010-08-10'}]->(v:Singer{name:"Vineela"}) RETURN *
 
 
+
+
+
 //Wrong query
 CREATE (n:Banker{name:"venkat"})<-[:FOLLOWS{date:'2010-08-10'}]->(v:Singer{name:"Vineela"}) RETURN *
 
