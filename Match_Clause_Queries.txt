@@ -1,0 +1,156 @@
+
+{key: value}
+
+Number
+String
+Boolean
+Temporal Types: Date, Time, LocalTime, DateTime, LocalDateTime and Duration
+
+The Structural Types
+Node
+	id
+	Label
+
+Relationship
+	Id
+	Type
+	Map
+	id of the start node
+	id of the end node
+	
+List & Map 
+	List []
+	Map {} key value
+	key: string
+	value has any property , null, 
+
+
+Naming Rules:
+	Alphabetic characters
+	Names should not begin with number  1firstname, firstname1
+Symbols
+	Names should not contain the symbols
+	except underscore first_name, 
+	$ at the first character ex:- $myParam
+Length:
+	can be very upto 65535 , 
+Case Sensitivity:
+	Names are case sensitive
+	:PERSON, 
+	:Person
+	:person
+	these 3 are different labels		
+	n and N are different
+White Space Characters
+	Leading and Trailing whitespaces will be removed automatically
+	MATCH ( a ) return a  is equivalent to MATCH (a) return a
+
+Recommendations
+
+Node Labels:
+	Camelcase, Beginning with upper case character
+	:TeamLead	team_lead
+	
+Relationships:
+	Upper case and using _ to separate words
+	:LEADS_TEAM     :leadTeam
+-------------------------------------------------------------------------------------------------
+
+
+CREATE
+(v:Person{name:"Oliver"}),
+(v1:Person{name:"Micheal"}),
+(v2:Person{name:"Charlie"}),
+(v3:Person{name:"Martin"}),
+(v4:Person{name:"Rob"}),
+(M:Movie{title:"Wall Street"}),
+(M1:Movie{title:"The American"}),
+(v)-[:DIRECTED]->(M),
+(v1)-[:ACTED_IN{role:"Gordan"}]->(M),
+(v2)-[:ACTED_IN{role:"Budfox"}]->(M),
+(v3)-[:ACTED_IN{role:"Carl Fox"}]->(M),
+(v1)-[:ACTED_IN{role:"President Andrew"}]->(M1),
+(v3)-[:ACTED_IN{role:"Ravan"}]->(M1),
+(v4)-[:ACTED_IN{role:"Sugu"}]->(M1)
+RETURN *
+
+
+CREATE DATABASE db_name
+
+:use db_name
+
+
+Basic node finding
+-*-  Get all nodes
+	MATCH(n) RETURN n
+
+-*-  Get all nodes with a label
+-- Return all the movies in database
+
+	MATCH (movie:Movie) RETURN movie.title
+
+-*-  Related nodes
+Return all the movies directed by "Oliver" / "Rob"
+	MATCH (director {name: "Oliver Stone"})--(movie)
+	RETURN movie.title
+
+
+Match with labels
+-*-  Relationship basics
+-*-  Outgoing relationships
+-*-  Directed relationships and variable
+-*-  Match on relationship type
+-*-  Match on multiple relationship types
+-*-  Match on relationship type and use a variable
+
+Relationships 
+-*-  Relationship types with uncommon characters
+-*-  Multiple relationships
+-*-  Variable length relationships
+-*-  Variable length relationships with multiple relationship types
+-*-  Relationship variable in variable length relationships
+-*-  Match with properties on a variable length path
+-*-  Zero length paths
+-*-  Named paths
+-*-  Matching on a bound relationship
+
+Shortest path
+-*-  Single shortest path
+-*-  Single shortest path with predicates
+-*-  All shortest paths
+
+Get node or relationship by id
+-*-  Node by id
+-*-  Relationship by id
+-*-  Multiple nodes by id
+
+
+
+--Get all the nodes in the database.
+
+MATCH (n)
+RETURN n
+
+Returns all the movies in the database.
+
+MATCH (movie:Movie)
+RETURN movie.title
+
+MATCH(n{name:"Nancy Meyers"}) RETURN n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
