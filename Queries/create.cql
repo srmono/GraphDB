@@ -15,8 +15,6 @@ CREATE
     (v4)-[:DIRECTED]->(M1)
 RETURN *
 
-
-
 //// Basic node finding
 // -*-  Get all nodes
 	MATCH(n) RETURN n
@@ -100,15 +98,100 @@ RETURN movie.title, director.name
 // The dots may also be omitted when setting only one bound 
 // and this implies a fixed length pattern.
 
+//Returns all movies related to 'Charlie Sheen' by 1 to 3 hops. 
 MATCH (charlie {name: "Charlie Sheen"})-[:ACTED_IN*1..3]-(movie:Movie)
 RETURN movie.title
 
 
-
-
 // -*-  Variable length relationships with multiple relationship types
+
+//Return all people related to Charlie Sheen, by 2 hops , with any combination of relationship
+
+MATCH (charlie {name: "Charlie Sheen"})-[:ACTED_IN|DIRECTED*2]-(person:Person)
+RETURN person.name
+
 // -*-  Relationship variable in variable length relationships
+
+//Return a list of relationships
+
+MATCH p=(actor{name: "Charlie Sheen"})-(:ACTED_IN*2)-(co_actor)
+RETURN p
+
+MATCH p=(actor{name: "Charlie Sheen"})-(:ACTED_IN*2)-(co_actor)
+RETURN relationships(p)
+
 // -*-  Match with properties on a variable length path
+
+MATCH
+  (charlie:Person {name: 'Charlie Sheen'}),
+  (martin:Person {name: 'Martin Sheen'})
+CREATE (charlie)-[:X {blocked: false}]->(:UNBLOCKED)<-[:X {blocked: false}]-(martin)
+CREATE (charlie)-[:X {blocked: true}]->(:BLOCKED)<-[:X {blocked: false}]-(martin)
+
+
+// Return the path between charlie Sheen and martin Sheen 
+// where all the relationship blocked prop set to false
+MATCH p=(charlie:Person)-[* {blocked: false}]-(martin:Person)
+WHERE charlie.name = "Charlie Sheen" AND martin.name = "Martin Sheen"
+RETURN p
+
 // -*-  Zero length paths
+Return the movie itself as well as actors and director one relationship way
+
+MATCH (ws:Movie {title: "Wall Street"})-[*0..1]-(x)
+return x
+
 // -*-  Named paths
+// Return the two paths from Micheal Douglas
+   
+   MATCH p = (m {name: "Micheal Douglas"})-->()
+   RETURN p
+
 // -*-  Matching on a bound relationship
+
+MATCH (a)-[r]-(b)
+WHERE id(r) = 0
+RETURN a, b
+
+//// Shortest path 
+
+MATCH
+    (martin:Person {name: "Martin Sheen"}),
+    (oliver:Person {name: "Oliver Stone"}),
+    p= shortestPath((martin)-[*..15]-(oliver))
+RETURN p
+
+
+//Single shortest path with predicates
+//predicates always use with where clause
+//TBD
+// MATCH
+//     (charlie:Person {name: 'Charlie Sheen'}),
+//     (martin:Person {name: "Martin Sheen"}),
+//     p= shortestPath((charlie)-[*]-(martin))
+// WHERE none(r in relationship(p) WHERE type(r) = 'FATHER')
+// RETURN p
+
+// All the shortest paths
+MATCH
+    (martin:Person {name: "Martin Sheen"}),
+    (micheal:Person {name: "Micheal Douglas"}),
+    p= allShortestPaths((martin)-[*]-(micheal))
+RETURN p
+
+// Node By id
+MATCH (n)
+WHERE id(n) = 0
+RETURN n
+
+// Relationship by id
+
+MATCH ()-[r]->()
+WHERE id(r) = 0
+RETURN r
+
+// Multiple nodes by id
+
+MATCH (n)
+WHERE id(n) IN [0, 3, 5]
+RETURN n
