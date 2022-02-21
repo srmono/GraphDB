@@ -15,7 +15,6 @@ CREATE
     (a{name:"Stefan"}),
     (b{name:"George"}),
     (c{name:"Peter", age:34}),
-    (d{name:"Stefan"}),
     (e:Swedish{name:"Andy", age:36, hungry:true}),
     (a)-[:KNOWS]->(e),
     (e)-[:KNOWS]->(c),
