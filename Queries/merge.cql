@@ -1,5 +1,4 @@
 // The MERGE clause ensures that a pattern exists in the graph. Either the pattern already exists, or it needs to be created.
-
 CREATE
     (a:Person{name:"Charlie Sheen", chauffeurName:'John Brown', bornIn:'New York'}),
     (b:Person{name:"Oliver Stone", chauffeurName:'Bill White', bornIn: 'New York'}),
@@ -94,3 +93,54 @@ MATCH (person:Person)
 MERGE (city:City {name: person.bornIn})
 MERGE (person)-[r:BORN_IN]->(city)
 RETURN person.name, person.bornIn, city
+
+// Merge on relationship between an existing node and a merged node derived from node prop
+MATCH (person:Person)
+MERGE (person)-[r:HAS_CHAUFFEUR]->(chauffeur:Chaufeur {name: person.chauffeurName})
+RETURN person.name, person.chauffeurName, chauffeur
+
+//Using unique constraints with Merge
+
+CREATE CONSTRAINT FOR (n:Person) REQUIRE n.name IS UNIQUE;
+CREATE CONSTRAINT FOR (n:Person) REQUIRE n.role IS UNIQUE;
+
+//MERGE using unique constraints create a new node if node is not found
+
+MERGE (laurence:Person {name: "Laurence"})
+RETURN laurence.name
+
+//MERGE using unique constraints matches an existing node
+MERGE (oliver:Person {name: "Oliver Stone"})
+RETURN oliver.name, oliver.bornIn
+
+//MERGE using unique constraints partial matches
+// Merge using unique constraints fail when finding partial matches
+
+MERGE (micheal:Person {name: "Micheal Douglas", role: "Gordon"})
+RETURN micheal
+
+// if you want to set role 
+
+MERGE (micheal:Person {name: "Micheal Douglas"})
+SET micheal.role = "Gordon"
+
+//MERGE with  unique constraints  fails when finding conflicting matches
+MERGE (oliver:Person {name: "Oliver Stone", role:"role name"})
+RETURN oliver
+
+
+
+// Using map with merge
+
+//Parameter
+{
+    "param":{
+        "name": "venkat"
+        "role": "Trainer"
+        ......
+    }
+}
+
+MERGE (person:Person {name: $param.name, role: $param.role} )
+RETURN person.name, person.role
+
