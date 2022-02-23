@@ -146,3 +146,61 @@ WHERE EXISTS {
 RETURN person.name AS name
 
 //Nesting Existential subqueries
+
+MATCH (person:Person)
+WHERE EXISTS {
+    MATCH (person)-[:HAS_DOG]->(dog:Dog)
+    WHERE EXISTS {
+        MATCH (dog)-[:HAS_TOY]->(toy:Toy)
+        WHERE toy.name="Banana"
+    }
+}
+RETURN person.name AS name
+
+// Lists 
+//IN operator
+MATCH (a:Person)
+WHERE a.name IN ['Peter', 'Timothy']
+RETURN a.name, a.age
+
+// Default to false if properties and values 
+
+MATCH (n:Person)
+WEHRE n.belt = "White"
+RETURN n.name, n.age, n.belt
+
+// Default to true if property is missing
+
+MATCH (n:Person)
+WHERE n.belt = 'white' OR n.belt IS NULL
+RETURN n.name, n.age, n.belt
+ORDER BY n.name
+
+// Filter on NULL
+
+//NOT(IS NULL) also works
+
+MATCH (n:Person)
+WHERE n.name = 'Peter' AND n.belt IS NULL
+RETURN n.name, n.age, n.belt
+
+///Using Ranges
+
+MATCH (n:Person)
+WHERE n.name >= "Peter"
+RETURN n.name, n.age 
+
+//Composite range
+MATCH (n:Person)
+WHERE n.name > "Andy" AND a.name < 'Timothy'
+RETURN n.name, n.age 
+
+// Pattern element predicates
+WITH 30 AS minAge 
+MATCH (a:Person WHERE a.name = 'Andy')-[:KNOWS]->(b:Person WHERE b.age > minAge)
+RETURN b.name
+
+// The same rule applies on pattern comprehensions
+
+MATCH (a:Person {name: 'Andy'})
+RETURN [(a)-->(b WHERE b:Person) | b.name] AS friends
