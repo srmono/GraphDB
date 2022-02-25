@@ -1,0 +1,12 @@
+EMPLOYEE_ID,FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUMBER,SALARY,DEPARTMENT_ID
+100,Eric,Dickson,dickson@yahoo.com,1505403384,23000,10
+101,Mat,Rool,rool@gmail.com,9083834364,34000,10
+102,Desmond,Grain,desmond@grail.com,8074374373,22000,30
+103,Anthony,Bash,bash@mail.com,8073829495,40000,10
+104,Keli,Tata,tata@keli.com,9072737384,2000,40
+105,Veronica,Dash,dash@koo.com,7083736463,41000,50
+106,Bello,Agbo,agbo@mail.com,7038383943,32000,70
+107,Kayode,Paul,paul@gmail.com,8093839393,2000,80
+108,Anne,Zaro,zaro@keni.com,9034857463,5000,110
+109,Luck,Obom,luck@gmail.com,8037483938,7000,30
+110,Dennis,Math,math@gmail.com,8073839293,52000,10

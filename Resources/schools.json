@@ -1,0 +1,18 @@
+
+{
+ "school":"Revival Academy",
+ "address": "23, New Road, Off Camp, Ademola, Lagos",
+ "students": ["Victor Sada","Mike Reo","Elizabeth Kane", "Happy Stone", "Grace Baba", "Tony Campo", "Zain Rono", "Paul Tanson"]
+}
+
+{
+ "school":"Excel School of Science",
+ "address": "40, Acada, Accra Gaha",
+ "students": ["Erica Talo","Zaza Moho","Bello Madu", "Jacobs Addi", "Dede Soko", "Breth Moore", "Steve Greg", "Tero Bebe"]
+}
+
+{
+ "school":"Army Day College",
+ "address": "67 Santro, South Africa",
+ "students": ["Mehita Cada","Trebo Beki","Jesu Kelo", "Ruth Abala", "Kennedy Zulu", "Melon Gate", "Santos Faith", "Abros Lina"]
+}

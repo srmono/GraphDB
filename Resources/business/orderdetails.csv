@@ -1,0 +1,7 @@
+orderNumber,productCode,quantityOrdered,priceEach,orderLineNumber
+
+10100,S10_1678,30,136.00,3
+
+10101,S10_4757,25,108.06,4
+
+10102,S12_1099,45,32.53,3
