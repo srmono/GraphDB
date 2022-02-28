@@ -7,7 +7,6 @@ SHOW USERS
 SHOW ROLES
 
 //-------------SHOW FUNCTIONS----------------------//
-
 //--The command SHOW FUNCTIONS returns only the default output. For a full output use the optional YIELD command. Full output: SHOW FUNCTIONS YIELD *.
 //Listing all functions
 SHOW FUNCTIONS 
@@ -35,6 +34,7 @@ SHOW FUNCTIONS EXECUTABLE BY venkat
 
 
 //-------------SHOW TRANSACTIONS------------------------//
+
 //The SHOW TRANSACTIONS command is used to display running transactions within the instance.
 //The command SHOW TRANSACTIONS returns only the default output. For a full output use the optional YIELD command. Full output: SHOW TRANSACTIONS YIELD *.
 
@@ -69,7 +69,7 @@ TERMINATE TRANSACTION[S] transaction_id[, ...]
 
 //Terminate Transactions
 TERMINATE TRANSACTIONS "foreachclause-transaction-327", "foreachclause-transaction-328"
-TERMINATE TRANSACTIONS "neo4j-transaction-1","neo4j-transaction-2"
+TERMINATE TRANSACTIONS "neo4j-transaction-1", "neo4j-transaction-2"
 
 
 //-------------SHOW PROCEDURES----------------------//
@@ -99,7 +99,7 @@ SHOW PROCEDURE[S] EXECUTABLE BY username
 
 
 //Listing the available procedures can be done with 
-SHOW PROCEDURES.
+SHOW PROCEDURES
 
 
 //Listing procedures with filtering on output columns

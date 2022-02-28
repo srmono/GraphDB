@@ -1,0 +1,144 @@
+﻿name,category,description
+abs,Numeric,Returns the absolute value of an integer.
+abs,Numeric,Returns the absolute value of a floating point number.
+acos,Trigonometric,Returns the arccosine of a number in radians.
+all,Predicate,Returns true if the predicate holds for all elements in the given list.
+any,Predicate,Returns true if the predicate holds for at least one element in the given list.
+asin,Trigonometric,Returns the arcsine of a number in radians.
+atan,Trigonometric,Returns the arctangent of a number in radians.
+atan2,Trigonometric,Returns the arctangent2 of a set of coordinates in radians.
+avg,Aggregating,Returns the average of a set of integer values.
+avg,Aggregating,Returns the average of a set of floating point values.
+avg,Aggregating,Returns the average of a set of duration values.
+ceil,Numeric,Returns the smallest floating point number that is greater than or equal to a number and equal to a mathematical integer.
+coalesce,Scalar,Returns the first non-null value in a list of expressions.
+collect,Aggregating,Returns a list containing the values returned by an expression.
+cos,Trigonometric,Returns the cosine  of a number.
+cot,Trigonometric,Returns the cotangent of a number.
+count,Aggregating,Returns the number of values or rows.
+date,Temporal,Create a Date instant.
+date.realtime,Temporal,Get the current Date instant using the realtime clock.
+date.statement,Temporal,Get the current Date instant using the statement clock.
+date.transaction,Temporal,Get the current Date instant using the transaction clock.
+date.truncate,Temporal,Truncate the input temporal value to a Date instant using the specified unit.
+datetime,Temporal,Create a DateTime instant.
+datetime.fromepoch,Temporal,Create a DateTime given the seconds and nanoseconds since the start of the epoch.
+datetime.fromepochmillis,Temporal,Create a DateTime given the milliseconds since the start of the epoch.
+datetime.realtime,Temporal,Get the current DateTime instant using the realtime clock.
+datetime.statement,Temporal,Get the current DateTime instant using the statement clock.
+datetime.transaction,Temporal,Get the current DateTime instant using the transaction clock.
+datetime.truncate,Temporal,Truncate the input temporal value to a DateTime instant using the specified unit.
+degrees,Trigonometric,Converts radians to degrees.
+duration,Temporal,Construct a Duration value.
+duration.between,Temporal,Compute the duration between the 'from' instant (inclusive) and the 'to' instant (exclusive) in logical units.
+duration.inDays,Temporal,Compute the duration between the 'from' instant (inclusive) and the 'to' instant (exclusive) in days.
+duration.inMonths,Temporal,Compute the duration between the 'from' instant (inclusive) and the 'to' instant (exclusive) in months.
+duration.inSeconds,Temporal,Compute the duration between the 'from' instant (inclusive) and the 'to' instant (exclusive) in seconds.
+e,Logarithmic,"Returns the base of the natural logarithm, e."
+endNode,Scalar,Returns the end node of a relationship.
+exists,Predicate,"Returns true if a match for the pattern exists in the graph, or if the specified property exists in the node, relationship or map."
+exp,Logarithmic,"Returns e^n, where e is the base of the natural logarithm, and n is the value of the argument expression."
+file,Scalar,Returns the absolute path of the file that LOAD CSV is using.
+floor,Numeric,Returns the largest floating point number that is less than or equal to a number and equal to a mathematical integer.
+haversin,Trigonometric,Returns half the versine of a number.
+head,Scalar,Returns the first element in a list.
+id,Scalar,Returns the id of a node.
+id,Scalar,Returns the id of a relationship.
+isEmpty,Predicate,Checks whether a list is empty.
+isEmpty,Predicate,Checks whether a map is empty.
+isEmpty,Predicate,Checks whether a string is empty.
+keys,List,Returns a list containing the string representations for all the property names of a node.
+keys,List,Returns a list containing the string representations for all the property names of a relationship
+keys,List,Returns a list containing the string representations for all the property names of a map.
+labels,List,Returns a list containing the string representations for all the labels of a node.
+last,Scalar,Returns the last element in a list.
+left,String,Returns a string containing the specified number of leftmost characters of the original string.
+length,Scalar,Returns the length of a path.
+linenumber,Scalar,Returns the line number that LOAD CSV is currently using.
+localdatetime,Temporal,Create a LocalDateTime instant.
+localdatetime.realtime,Temporal,Get the current LocalDateTime instant using the realtime clock.
+localdatetime.statement,Temporal,Get the current LocalDateTime instant using the statement clock.
+localdatetime.transaction,Temporal,Get the current LocalDateTime instant using the transaction clock.
+localdatetime.truncate,Temporal,Truncate the input temporal value to a LocalDateTime instant using the specified unit.
+localtime,Temporal,Create a LocalTime instant.
+localtime.realtime,Temporal,Get the current LocalTime instant using the realtime clock.
+localtime.statement,Temporal,Get the current LocalTime instant using the statement clock.
+localtime.transaction,Temporal,Get the current LocalTime instant using the transaction clock.
+localtime.truncate,Temporal,Truncate the input temporal value to a LocalTime instant using the specified unit.
+log,Logarithmic,Returns the natural logarithm of a number.
+log10,Logarithmic,Returns the common logarithm (base 10) of a number.
+ltrim,String,Returns the original string with leading whitespace removed.
+max,Aggregating,Returns the maximum value in a set of values.
+min,Aggregating,Returns the minimum value in a set of values.
+nodes,List,Returns a list containing all the nodes in a path.
+none,Predicate,Returns true if the predicate holds for no element in the given list.
+percentileCont,Aggregating,Returns the percentile of a value over a group using linear interpolation.
+percentileDisc,Aggregating,Returns the nearest integer value to the given percentile over a group using a rounding method.
+percentileDisc,Aggregating,Returns the nearest floating point value to the given percentile over a group using a rounding method.
+pi,Trigonometric,Returns the mathematical constant pi.
+point,Spatial,"Returns a 2D or 3D point object, given two or respectively three coordinate values in the Cartesian coordinate system or WGS 84 geographic coordinate system."
+point.distance,Spatial,Returns a floating point number representing the geodesic distance between any two points in the same CRS.
+point.withinBBox,Spatial,Returns true if the provided point is within the bounding box defined by the two provided points.
+properties,Scalar,Returns a map containing all the properties of a node.
+properties,Scalar,Returns a map containing all the properties of a relationship.
+properties,Scalar,Returns a map containing all the properties of a map.
+radians,Trigonometric,Converts degrees to radians.
+rand,Numeric,"Returns a random floating point number in the range from 0 (inclusive) to 1 (exclusive); i.e. [0,1)."
+randomUUID,Scalar,Generates a random UUID.
+range,List,Returns a list comprising all integer values within a specified range.
+range,List,Returns a list comprising all integer values within a specified range created with step length.
+reduce,List,"Runs an expression against individual elements of a list, storing the result of the expression in an accumulator."
+relationships,List,Returns a list containing all the relationships in a path.
+replace,String,Returns a string in which all occurrences of a specified search string in the original string have been replaced by another (specified) replace string.
+reverse,String,Returns a string in which the order of all characters in the original string have been reversed.
+reverse,List,Returns a list in which the order of all elements in the original list have been reversed.
+right,String,Returns a string containing the specified number of rightmost characters of the original string.
+round,Numeric,Returns the value of a number rounded to the nearest integer.
+round,Numeric,Returns the value of a number rounded to the specified precision using rounding mode HALF_UP.
+round,Numeric,Returns the value of a number rounded to the specified precision with the specified rounding mode.
+rtrim,String,Returns the original string with trailing whitespace removed.
+sign,Numeric,"Returns the signum of an integer number: 0 if the number is 0, -1 for any negative number, and 1 for any positive number."
+sign,Numeric,"Returns the signum of a floating point number: 0 if the number is 0, -1 for any negative number, and 1 for any positive number."
+sin,Trigonometric,Returns the sine of a number.
+single,Predicate,Returns true if the predicate holds for exactly one of the elements in the given list.
+size,Scalar,Returns the number of items in a list.
+size,Scalar,Returns the number of Unicode characters in a string.
+split,String,Returns a list of strings resulting from the splitting of the original string around matches of the given delimiter.
+split,String,Returns a list of strings resulting from the splitting of the original string around matches of any of the given delimiters.
+sqrt,Logarithmic,Returns the square root of a number.
+startNode,Scalar,Returns the start node of a relationship.
+stdev,Aggregating,Returns the standard deviation for the given value over a group for a sample of a population.
+stdevp,Aggregating,Returns the standard deviation for the given value over a group for an entire population.
+substring,String,"Returns a substring of the original string, beginning with a 0-based index start."
+substring,String,"Returns a substring of length 'length' of the original string, beginning with a 0-based index start."
+sum,Aggregating,Returns the sum of a set of integers
+sum,Aggregating,Returns the sum of a set of floats
+sum,Aggregating,Returns the sum of a set of durations
+tail,List,Returns all but the first element in a list.
+tan,Trigonometric,Returns the tangent of a number.
+time,Temporal,Create a Time instant.
+time.realtime,Temporal,Get the current Time instant using the realtime clock.
+time.statement,Temporal,Get the current Time instant using the statement clock.
+time.transaction,Temporal,Get the current Time instant using the transaction clock.
+time.truncate,Temporal,Truncate the input temporal value to a Time instant using the specified unit.
+toBoolean,Scalar,Converts a string value to a boolean value.
+toBoolean,Scalar,Converts a boolean value to a boolean value.
+toBoolean,Scalar,Converts a integer value to a boolean value. 0 is defined to be FALSE and any other integer is defined to be TRUE.
+toBooleanList,List,Converts a list of values to a list of boolean values. If any values are not convertible to boolean they will be null in the list returned.
+toBooleanOrNull,Scalar,"Converts a value to a boolean value, or null if the value cannot be converted."
+toFloat,Scalar,Converts a string value to a floating point value.
+toFloat,Scalar,Converts an integer value to a floating point value.
+toFloatList,List,Converts a list of values to a list of float values. If any values are not convertible to float they will be null in the list returned.
+toFloatOrNull,Scalar,"Converts a value to a floating point value, or null if the value cannot be converted."
+toInteger,Scalar,Converts a string value to an integer value.
+toInteger,Scalar,Converts a floating point value to an integer value.
+toInteger,Scalar,Converts a boolean to an integer value. TRUE is defined to be 1 and FALSE is defined to be 0.
+toIntegerList,List,Converts a list of values to a list of integer values. If any values are not convertible to integer they will be null in the list returned.
+toIntegerOrNull,Scalar,"Converts a value to an integer value, or null if the value cannot be converted."
+toLower,String,Returns the original string in lowercase.
+toString,String,"Converts an integer, float, boolean, point or temporal type (i.e. Date, Time, LocalTime, DateTime, LocalDateTime or Duration) value to a string."
+toStringList,List,Converts a list of values to a list of string values. If any values are not convertible to string they will be null in the list returned.
+toStringOrNull,String,"Converts an integer, float, boolean, point or temporal type (i.e. Date, Time, LocalTime, DateTime, LocalDateTime or Duration) value to a string, or null if the value cannot be converted."
+toUpper,String,Returns the original string in uppercase.
+trim,String,Returns the original string with leading and trailing whitespace removed.
+type,Scalar,Returns the string representation of the relationship type.
