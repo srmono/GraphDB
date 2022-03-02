@@ -129,9 +129,7 @@ MERGE (oliver:Person {name: "Oliver Stone", role:"role name"})
 RETURN oliver
 
 
-
 // Using map with merge
-
 //Parameter
 {
     "param":{
@@ -143,4 +141,6 @@ RETURN oliver
 
 MERGE (person:Person {name: $param.name, role: $param.role} )
 RETURN person.name, person.role
+
+//MATCH (n:Emp {name: $emp_param})
 

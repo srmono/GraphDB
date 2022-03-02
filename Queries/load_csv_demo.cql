@@ -89,8 +89,8 @@ CREATE (
         IATA_CODE:airlines.IATA_CODE, 
         AIRLINE:airlines.AIRLINE
         }
-    )
-WITH al 
+    );
+//WITH al 
 LOAD CSV WITH HEADERS FROM "file:///datasets_810_1496_airports.csv" AS airports
 CREATE (
     a:Airports{
@@ -102,8 +102,8 @@ CREATE (
         LATITUDE: airports.LATITUDE,
         LONGITUDE: airports.LONGITUDE
         }
-    )
-WITH a, al 
+    );
+//WITH a, al 
 LOAD CSV WITH HEADERS FROM "file:///flights.csv" AS flights
 CREATE (
     f:Flights{
@@ -139,8 +139,8 @@ CREATE (
         LATE_AIRCRAFT_DELAY: flights.LATE_AIRCRAFT_DELAY,
         WEATHER_DELAY: flights.WEATHER_DELAY
     }
-    )
-WITH a, f, al
+    );
+//WITH a, f, al
 MATCH
     (a:Airports{IATA_CODE: a.IATA_CODE}),
     (f:Flights{DESTINATION_AIRPORT: f.DESTINATION_AIRPORT}),
@@ -149,65 +149,138 @@ WHERE a.IATA_CODE = f.DESTINATION_AIRPORT AND al.IATA_CODE = f.AIRLINE
 CREATE (al)<-[:OWN_BY]-(f)-[:FLY_TO]->(a)
 RETURN *
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Other Examples 
-companies.csv
+//companies.csv
 Id,Name,Location,Email,BusinessType
 1,Neo4j,San Mateo,contact@neo4j.com,P
 2,AAA,,info@aaa.com,
 3,BBB,Chicago,,G
 
 
-employees.csv
+//SKIP NULL VALUES
+LOAD CSV WITH HEADERS FROM "file:///companies.csv" AS row 
+WITH 
+    row 
+WHERE 
+    row.Id IS NOT NULL 
+MERGE (c:Company {companyId: row.Id})
+
+//clear data
+MATCH (c:Company) DELETE c;
+
+//SET DEFAULT FOR NULL VALUES 
+LOAD CSV WITH HEADERS FROM "file:///companies.csv" AS row 
+MERGE (c:Company {companyId: row.Id, hqLocation:coalesce{row.Location: "Unknown"}})
+
+//clear data
+MATCH (c:Company) DELETE c;
+
+//change emplty string to null values
+LOAD CSV WITH HEADERS FROM "file:///companies.csv" AS row 
+MERGE (c:Company {companyId: row.Id})
+SET c.emailAddress = CASE trim(row.Email) WHEN "" THEN null ELSE row.Email END
+
+
+
+
+//employees.csv
 Id,Name,Skills,Email
 1,Joe Smith,Cypher:Java:JavaScript,joe@neo4j.com
 2,Mary Jones,Java,mary@neo4j.com
 3,Trevor Scott,Java:JavaScript,trevor@neo4j.com
 
+LOAD CSV FROM "file:///employees.csv" AS row 
+MERGE (e:Employee {employeeId: row.Id, email: row.Email})
+WITH e, row 
+UNWIND split(row.Skills, ":") AS skill 
+MERGE (s:Skill {name: skill} )
+MERGE (e)-[r:HAS_EXPERIENCE]->(s)
 
-people.csv
+
+//CASE conditional
+//BusinessType
+// P -> Public 
+// R -> Private 
+// G -> Gov 
+
+//Clear data
+MATCH (n:Company) DELETE n; 
+
+//Set businessType property based on the shortened values in csv
+LOAD CSV WITH HEADERS FROM "file:///companies.csv" AS row 
+WITH row WHERE row.Id IS NOT NULL 
+WITH row
+(
+    CASE row.BusinessType
+    WHEN 'P' THEN "Public"
+    WHEN 'R' THEN "Private"
+    WHEN 'G' THEN "Government"
+    ELSE "Other"
+    END
+) AS type
+MERGE (c:Company {companyId: row.Id, hqLocation: coalesce(row.Location, "Unknown")})
+SET c.emailAddress = CASE trim(row.Email) WHEN "" THEN null ELSE row.Email END
+SET c.businessType = type
+RETURN *
+
+
+//people.csv
 employeeId,Name,Company
 1,Bob Smith,1
 2,Joe Jones,3
 3,Susan Scott,2
 4,Karen White,1
 
+MERGE (e:Employee {employeeId: row.employeeId})
+MERGE (c:Company {companyId: row.companyId})
+MERGE (e)-[r:WORKS_FOR]->(c)
+
+
+///Final Query 
+//clear Data
+MATCH (n) DETACH DELETE n; 
+
+//Load employees node
+LOAD CSV FROM "file:///employees.csv" AS row 
+MERGE (e:Employee {employeeId: row.Id, email: row.Email})
+WITH e, row 
+UNWIND split(row.Skills, ":") AS skill 
+MERGE (s:Skill {name: skill} )
+MERGE (e)-[r:HAS_EXPERIENCE]->(s)
+
+//Load company nodes
+LOAD CSV WITH HEADERS FROM "file:///companies.csv" AS row 
+WITH row WHERE row.Id IS NOT NULL 
+WITH row
+(
+    CASE row.BusinessType
+    WHEN 'P' THEN "Public"
+    WHEN 'R' THEN "Private"
+    WHEN 'G' THEN "Government"
+    ELSE "Other"
+    END
+) AS type
+MERGE (c:Company {companyId: row.Id, hqLocation: coalesce(row.Location, "Unknown")})
+SET c.emailAddress = CASE trim(row.Email) WHEN "" THEN null ELSE row.Email END
+SET c.businessType = type
+RETURN count(c);
+
+//Load people nodes
+LOAD CSV WITH HEADERS FROM "file:///people.csv" AS row 
+//MERGE (e:Employee {employeeId: row.employeeId, name: row.name})
+MERGE (e:Employee {employeeId: row.employeeId})
+MERGE (c:Company {companyId: row.companyId})
+MERGE (e)-[r:WORKS_FOR]->(c)
+RETURN count(e);
+
+
+//10 lac rows?
+
+:auto USING PERIODIC COMMIT 500
+LOAD CSV WITH HEADERS FROM "file:///people.csv" AS row 
+.................
+
+//As required in dbms settings
+// dbms.memory.heap.initial_size=4G
+// dbms.memory.heap.max_size=4G
+// dbms.memory.pagecache.size=ideally 

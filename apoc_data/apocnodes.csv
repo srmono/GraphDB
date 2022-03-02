@@ -1,0 +1,4 @@
+orgid:ID(OrgID),permid:INT,name:STRING
+1,10,Google
+2,20,Apple
+3,30,Boeing

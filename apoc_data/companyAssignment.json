@@ -1,0 +1,21 @@
+
+{
+ "companyName":"Boss Inc",
+ "address": "23, New Road, Off Camp, Ademola, Lagos, Nigeria",
+ "employees": ["Victor Sada","Mike Reo","Elizabeth Kane", "Happy Stone", "Grace Baba", "Tony Campo", "Zain Rono", "Paul Tanson"],
+ "customers":["Pace Fadi", "Gado Belli", "Luck Best"]
+}
+
+{
+ "companyName":"Excel Inc",
+ "address": "40, Acada, Accra Ghana",
+ "employees": ["Erica Talo","Zaza Moho","Bello Madu", "Jacobs Addi", "Dede Soko", "Breth Moore", "Steve Greg", "Tero Bebe"],
+ "customers":["Dennis Moore", "Kate Estmod", "Covic Teno"]
+}
+
+{
+ "companyName":"Drek Ltd",
+ "address": "67 Santro, Abbey, Mali",
+ "employees": ["Mehita Cada","Trebo Beki","Jesu Kelo", "Ruth Abala", "Kennedy Zulu", "Melon Gate", "Santos Faith", "Abros Lina"],
+ "customers":["Osas Vero", "Dangote Seko", "Breth Solo"]
+}
