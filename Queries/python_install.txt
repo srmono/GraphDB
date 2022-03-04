@@ -1,0 +1,5 @@
+-- Install Python
+https://www.python.org/downloads/
+
+-- Set Environment Variables
+Installation dir -> bin 

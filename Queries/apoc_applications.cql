@@ -1,18 +1,17 @@
 // Code: Explanation and Application of APOC on Date in Neo4j
-i.
 
-RETURN date("2020-10-07") AS date
+WITH apoc.date.parse("10/03/2024", "ms", "dd/mm/yyyy") as input 
+RETURN date(datetime({epochmillis:input})) AS date
 
-ii.
-
-WITH [x in split('2020/11/07', '/') | toInteger(x)] AS dateElements
-
-RETURN date({day:dateElements[2], month:dateElements[1], year:dateElements[0]}) AS date
-
-iii.
-WITH apoc.date.parse("2020/11/07",  "ms",  "dd/MM/yyyy") AS input
-RETURN date(datetime({epochmillis: input})) AS date
+WITH apoc.date.parse("10-03-2024", "ms", "dd-mm-yyyy") as input 
+RETURN date(datetime({epochmillis:input})) AS date
 
 
+WITH apoc.date.parse("2020-30-01", "ms", "yyyy-dd-mm") as input 
+RETURN date(datetime({epochmillis:input})) AS date
+
+
+WITH apoc.date.parse("Thu, 23 July 2020", "ms", "EEE, dd MMMMM yyyy") as input 
+RETURN date(datetime({epochmillis:input})) AS date
 
 
